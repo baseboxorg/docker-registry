@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  registry:
+    - affinity: 'container==swarm_manager'
+
+networks:
+  default:
+    external:
+      name: swarm-net

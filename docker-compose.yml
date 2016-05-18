@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  registry:
+    image: registry:2
+    labels:
+      traefik.enable: 'false'
+    ports:
+    - 443:5000/tcp
+    volumes:
+    - ${REGISTRY_DIR}:/var/lib/registry
+    - ${REGISTRY_CERTS}:/certs
+    environment:
+    - REGISTRY_HTTP_TLS_CERTIFICATE: '/certs/registry.crt'
+    - REGISTRY_HTTP_TLS_KEY: '/certs/registry.key'
+    logging:
+      driver: json-file
+      options:
+        max-size: '50m'
+    restart: 'no'
+    read_only: true
