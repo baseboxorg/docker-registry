@@ -2,7 +2,8 @@ version: '2'
 
 services:
   registry:
-    - affinity: 'container==swarm_manager'
+    environment:
+    - affinity:container==swarm_manager
 
 networks:
   default:

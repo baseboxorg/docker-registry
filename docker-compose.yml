@@ -11,8 +11,8 @@ services:
     - ${REGISTRY_DIR}:/var/lib/registry
     - ${REGISTRY_CERTS}:/certs
     environment:
-    - REGISTRY_HTTP_TLS_CERTIFICATE: '/certs/registry.crt'
-    - REGISTRY_HTTP_TLS_KEY: '/certs/registry.key'
+    - REGISTRY_HTTP_TLS_CERTIFICATE:/certs/registry.crt
+    - REGISTRY_HTTP_TLS_KEY:/certs/registry.key
     logging:
       driver: json-file
       options:
