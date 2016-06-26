@@ -1,4 +1,2 @@
-# Generated certificates
 auth/
 data/
-!auth/nginx.conf
