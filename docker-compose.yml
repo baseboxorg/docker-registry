@@ -23,8 +23,6 @@ services:
     image: registry:2
     labels:
       traefik.enable: 'false'
-    ports:
-    - 5000:5000
     volumes:
     - ${REGISTRY_DIR}:/var/lib/registry
     logging:
@@ -32,8 +30,3 @@ services:
       options:
         max-size: '50m'
     restart: 'no'
-
-networks:
-  default:
-    external:
-      name: traefik
