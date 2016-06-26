@@ -1,18 +1,22 @@
 version: '2'
 
 services:
+  apache:
+    image: httpd
+    hostname: registry.vibioh.fr
+    ports:
+    - 5443:443
+    links:
+    - registry:registry
+    volumes:
+    - ${REGISTRY_HTTPD_CONF_DIR}:/usr/local/apache2/conf
+
   registry:
     image: registry:2
     labels:
       traefik.enable: 'false'
-    ports:
-    - 443:5000/tcp
     volumes:
     - ${REGISTRY_DIR}:/var/lib/registry
-    - ${REGISTRY_CERTS}:/certs
-    environment:
-    - REGISTRY_HTTP_TLS_CERTIFICATE:/certs/registry.crt
-    - REGISTRY_HTTP_TLS_KEY:/certs/registry.key
     logging:
       driver: json-file
       options:

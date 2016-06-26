@@ -1,2 +1,4 @@
 # Generated certificates
-certs/*
+auth/*.crt
+auth/*.key
+data/

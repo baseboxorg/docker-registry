@@ -17,5 +17,5 @@ function readVariableIfRequired() {
 DOMAIN=${1}
 readVariableIfRequired 'DOMAIN'
 
-mkdir -p certs
-openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout certs/registry.key -out certs/registry.crt -subj "/CN=${DOMAIN}"
+mkdir -p auth 
+openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:4096 -keyout auth/domain.key -out auth/domain.crt -subj "/CN=${DOMAIN}"
