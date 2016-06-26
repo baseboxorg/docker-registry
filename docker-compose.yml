@@ -1,13 +1,13 @@
 version: '2'
 
 services:
-  apache:
-    image: nginx
+  nginx:
+    image: nginx:1.9
     hostname: registry.vibioh.fr
     labels:
       traefik.enable: 'false'
     ports:
-    - 10443:10443
+    - 10443:443
     links:
     - registry:registry
     volumes:
@@ -23,6 +23,8 @@ services:
     image: registry:2
     labels:
       traefik.enable: 'false'
+    ports:
+    - 5000:5000
     volumes:
     - ${REGISTRY_DIR}:/var/lib/registry
     logging:
@@ -30,3 +32,8 @@ services:
       options:
         max-size: '50m'
     restart: 'no'
+
+networks:
+  default:
+    external:
+      name: traefik
