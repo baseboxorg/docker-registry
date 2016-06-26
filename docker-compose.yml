@@ -2,16 +2,17 @@ version: '2'
 
 services:
   apache:
-    image: httpd
+    image: nginx
     hostname: registry.vibioh.fr
     labels:
       traefik.enable: 'false'
     ports:
-    - 5443:10443
+    - 10443:10443
     links:
     - registry:registry
     volumes:
-    - ${REGISTRY_HTTPD_CONF_DIR}:/usr/local/apache2/conf
+    - ${PROXY_CONF_DIR}:/etc/nginx/conf.d
+    - ${PROXY_CONF_DIR}/nginx.conf:/etc/nginx/nginx.conf:ro
     logging:
        driver: json-file
        options:

@@ -1,4 +1,4 @@
 # Generated certificates
-auth/*.crt
-auth/*.key
+auth/
 data/
+!auth/nginx.conf
