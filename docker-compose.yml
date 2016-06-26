@@ -4,12 +4,19 @@ services:
   apache:
     image: httpd
     hostname: registry.vibioh.fr
+    labels:
+      traefik.enable: 'false'
     ports:
-    - 5443:443
+    - 5443:10443
     links:
     - registry:registry
     volumes:
     - ${REGISTRY_HTTPD_CONF_DIR}:/usr/local/apache2/conf
+    logging:
+       driver: json-file
+       options:
+         max-size: '50m'
+    restart: 'no'
 
   registry:
     image: registry:2
@@ -22,4 +29,3 @@ services:
       options:
         max-size: '50m'
     restart: 'no'
-    read_only: true
