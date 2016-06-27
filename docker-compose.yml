@@ -19,6 +19,7 @@ services:
 
   registry:
     image: registry:2
+    hostname: registry
     labels:
       traefik.enable: 'false'
     volumes:
