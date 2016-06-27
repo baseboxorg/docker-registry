@@ -1,0 +1,21 @@
+nginx:
+  image: nginx:1.9
+  hostname: registry.vibioh.fr
+  labels:
+    traefik.enable: 'false'
+  ports:
+  - 5443:443
+  links:
+  - registry:registry
+  volumes:
+  - ${PROXY_CONF_DIR}:/etc/nginx/conf.d
+  - ${PROXY_CONF_DIR}/nginx.conf:/etc/nginx/nginx.conf:ro
+  restart: 'no'
+
+registry:
+  image: registry:2
+  labels:
+    traefik.enable: 'false'
+  volumes:
+  - ${REGISTRY_DIR}:/var/lib/registry
+  restart: 'no'
