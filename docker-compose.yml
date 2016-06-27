@@ -8,8 +8,6 @@ services:
       traefik.enable: 'false'
     ports:
     - 10443:443
-    links:
-    - registry:registry
     volumes:
     - ${PROXY_CONF_DIR}:/etc/nginx/conf.d
     - ${PROXY_CONF_DIR}/nginx.conf:/etc/nginx/nginx.conf:ro
