@@ -3,7 +3,6 @@ version: '2'
 services:
   nginx:
     image: nginx:1.9
-    hostname: registry.vibioh.fr
     labels:
       traefik.enable: 'false'
     ports:
