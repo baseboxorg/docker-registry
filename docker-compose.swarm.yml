@@ -1,6 +1,9 @@
 version: '2'
 
 services:
+  nginx:
+    environment:
+    - affinity:container==swarm_manager
   registry:
     environment:
     - affinity:container==swarm_manager

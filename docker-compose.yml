@@ -4,9 +4,9 @@ services:
   nginx:
     image: nginx:1.9
     labels:
-      traefik.enable: 'false'
-    ports:
-    - 10443:443
+      traefik.frontend.passHostHeader: 'true'
+      traefik.frontend.rule: 'Host: registry.${DOMAIN}'
+      traefik.port: '1080'
     volumes:
     - ${PROXY_CONF_DIR}:/etc/nginx/conf.d
     - ${PROXY_CONF_DIR}/nginx.conf:/etc/nginx/nginx.conf:ro
@@ -27,3 +27,8 @@ services:
       options:
         max-size: '50m'
     restart: 'no'
+
+networks:
+  default:
+    external:
+      name: traefik
