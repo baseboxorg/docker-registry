@@ -2,7 +2,7 @@ version: '2'
 
 services:
   nginx:
-    image: nginx:1.9
+    image: vibioh/nginx
     labels:
       traefik.frontend.passHostHeader: 'true'
       traefik.frontend.rule: 'Host: registry.${DOMAIN}'
